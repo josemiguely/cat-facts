@@ -10,8 +10,10 @@ from .forms import SignUpForm
 from .models import LikedFact
 import requests
 
-class IndexView(generic.TemplateView):
-    template_name = 'app/index.html'
+class IndexView(generic.View):
+    # Redirect to Login View
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect(reverse_lazy('login'))
 
 class SignUpView(generic.CreateView):
     form_class = SignUpForm
