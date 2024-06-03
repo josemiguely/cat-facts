@@ -39,3 +39,4 @@ These are the things that I would like to implement in the future but I didn't h
 - Paginate the facts from the API to show more facts than the first page
 - Implement Tests
 - Deploy with production settings
+- Add branching style of git flow (but without using the software): main, development, feature branches, fix branches, hotfix, etc.
