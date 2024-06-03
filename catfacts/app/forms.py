@@ -4,7 +4,6 @@ from django import forms
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=254)
-    password1 = forms.CharField(label= "Contraseña", widget=forms.PasswordInput)
-    password2 = forms.CharField(label= "Confirma la contraseña", widget=forms.PasswordInput)
+    password1 = forms.CharField(label= "Password", widget=forms.PasswordInput, min_length=4)
+    password2 = forms.CharField(label= "Confirm Password", widget=forms.PasswordInput, min_length=4)
     
