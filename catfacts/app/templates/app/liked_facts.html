@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Liked Cat Facts</title>
-</head>
-<body>
+{% extends "app/base.html" %}
+
+{% block content %}
+<div class="mt-3 mb-3">
     <h1>Liked Cat Facts</h1>
-    <ol>
-        {% for fact in liked_facts %}
-        <li>{{ fact.fact }}</li>
-        {% endfor %}
-    </ol>
-</body>
-</html>
+    <p class="lead">Here are the cat facts you have liked.</p>
+    <p class="lead">Total liked facts {{ liked_facts| length }}</p>
+    {% if liked_facts %}
+        <div class="list-group">
+            {% for fact in liked_facts %}
+            <div class="list-group-item">
+                {{ fact.fact }}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No liked facts yet!</p>
+    {% endif %}
+</div>
+{% endblock %}
