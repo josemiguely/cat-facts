@@ -40,3 +40,4 @@ These are the things that I would like to implement in the future but I didn't h
 - Implement Tests
 - Deploy with production settings
 - Add branching style of git flow (but without using the software): main, development, feature branches, fix branches, hotfix, etc.
+- Add default error pages (404, etc.)
