@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 from .forms import SignUpForm
 from .models import LikedFact
 import requests
@@ -18,7 +20,8 @@ class SignUpView(generic.CreateView):
 class CustomLoginView(LoginView):
     template_name = 'app/login.html'
     next_page = 'catfacts'
-    
+
+@method_decorator(never_cache, name='dispatch')
 class CatFactsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'app/catfacts.html'
     login_url = reverse_lazy('login')
@@ -40,8 +43,11 @@ class LikeCatFactView(LoginRequiredMixin, View):
         LikedFact.objects.create(user=request.user, fact=fact)  # Store the liked fact
         return HttpResponseRedirect(reverse_lazy('catfacts'))
     
+@method_decorator(never_cache, name='dispatch')
 class LikedFactsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'app/liked_facts.html'
+    login_url = reverse_lazy('login')
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_facts = LikedFact.objects.filter(user=self.request.user)
