@@ -9,5 +9,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('catfacts/', views.CatFactsView.as_view(), name='catfacts'),
     path('like_cat_fact/', views.LikeCatFactView.as_view(), name='like_cat_fact'),
-    path('liked_facts/', views.LikedFactsView.as_view(), name='liked_facts')
+    path('liked_facts/', views.LikedFactsView.as_view(), name='liked_facts'),
+    path('most-liked-facts/', views.MostLikedFactsView.as_view(), name='most_liked_facts'),
 ]

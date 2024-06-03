@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
+from django.db.models import Count
 from .forms import SignUpForm
 from .models import LikedFact
 import requests
@@ -53,3 +54,12 @@ class LikedFactsView(LoginRequiredMixin, generic.TemplateView):
         user_facts = LikedFact.objects.filter(user=self.request.user)
         context['liked_facts'] = user_facts
         return context
+
+@method_decorator(never_cache, name='dispatch') 
+class MostLikedFactsView(generic.ListView):
+    template_name = 'app/most_liked_facts.html'
+    context_object_name = 'most_liked_facts'
+
+    def get_queryset(self):
+        # Aggregates all facts and annotates them with the count of likes
+        return LikedFact.objects.values('fact').annotate(likes=Count('id')).order_by('-likes')

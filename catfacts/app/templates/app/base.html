@@ -21,6 +21,9 @@
                         <a class="nav-link" href="{% url 'liked_facts' %}">Liked Cat Facts</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'most_liked_facts' %}">Most Liked Cat Facts</a>
+                    </li>
+                    <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post" class="form-inline">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="/login/">

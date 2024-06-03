@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+
+{% block title %}Most Liked Cat Facts{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Most Liked Cat Facts</h1>
+    <ul class="list-group">
+        {% for fact in most_liked_facts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ fact.fact }}
+            <span class="badge badge-primary badge-pill">{{ fact.likes }}</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No likes yet!</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
