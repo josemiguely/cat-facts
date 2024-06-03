@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    Catfacts login success
+    <p>Welcome to Cat Facts! You are now logged in.</p>
+        <!-- Logout Form -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="/login/">
+            <button type="submit">Logout</button>
+        </form>
 </body>
 </html>
