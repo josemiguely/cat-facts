@@ -13,5 +13,18 @@
             <input type="hidden" name="next" value="/login/">
             <button type="submit">Logout</button>
         </form>
+        <p><a href="{% url 'liked_facts' %}">View Liked Cat Facts</a></p>
+            <ul>
+                {% for fact in cat_facts %}
+                <li>
+                    {{ fact.fact }} ({{ fact.length }} characters)
+                    <form action="{% url 'like_cat_fact' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="fact" value="{{ fact.fact }}">
+                        <button type="submit">Like</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
 </body>
 </html>
